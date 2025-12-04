@@ -6,11 +6,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Configuración de la base de datos usando variables de entorno
 const config = {
-    user: 'dbadmin',
-    password: 'Gabriel12:3',
-    server: 'omaapp.database.windows.net', // IP o nombre del servidor
-    database: 'Usuarios',
+    user: process.env.DB_USER,        // Usuario de la base de datos desde las variables de entorno
+    password: process.env.DB_PASSWORD, // Contraseña de la base de datos desde las variables de entorno
+    server: process.env.DB_SERVER,     // Servidor de la base de datos desde las variables de entorno
+    database: process.env.DB_NAME,     // Nombre de la base de datos desde las variables de entorno
     options: {
         encrypt: true,
         enableArithAbort: true,
@@ -41,4 +42,20 @@ app.post('/login', async (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor en ejecución en http://localhost:${PORT}`);
-});
+}); {
+  "name": "oma",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "mssql": "^11.0.1"
+  }
+}
